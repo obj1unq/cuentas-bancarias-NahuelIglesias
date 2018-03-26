@@ -3,9 +3,13 @@ object cuentaDePepe {
 	var saldo = 0
 	method saldo() = saldo
 	
-	method depositar(monto) { saldo += monto } 
+	method depositar(monto) { 
+		saldo += monto
+	} 
 
-	method extraer(monto) { saldo -= monto }
+	method extraer(monto) { 
+		saldo -= monto
+	}
 }
 
 object cuentaDeJulian {
@@ -21,5 +25,25 @@ object cuentaDeJulian {
 			saldo -= monto + 5
 		}
 		else saldo -= monto
+	}
+}
+
+object cuentaDePapa {
+	var saldoEnDolares = 0
+	method saldo() = saldoEnDolares * self.precioDeCompra()
+	
+	method precioDeCompra() {
+		return 14.70
+	}
+	method precioDeVenta() {
+		return 15.10
+	}
+	
+	method depositar(montoPesos) { 
+		saldoEnDolares += montoPesos/self.precioDeVenta()
+	} 
+
+	method extraer(montoPesos) { 
+		saldoEnDolares -= montoPesos/self.precioDeCompra()
 	}
 }
