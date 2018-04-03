@@ -130,6 +130,11 @@ object casaDeJulianYPepe {
 	method tengoLaCosa(cosa) {
 		return compras.contains(cosa)
 	}
+	method pedirDeseo(cosa) {
+		if (!self.tengoLaCosa(cosa)) {
+			self.comprar(cosa)
+		}
+	}
 	method deseosCumplidos(listaDeseos) {
 		return compras.filter({compra => listaDeseos.contains(compra)})
 	}
@@ -151,9 +156,7 @@ object romina {
 		deseos.remove(cosa)
 	}
 	method pedirUnaCosa(cosa) {
-		if (!casaDeJulianYPepe.tengoLaCosa(cosa)) {
-			casaDeJulianYPepe.comprar(cosa)
-		}
+		casaDeJulianYPepe.pedirDeseo(cosa)
 	}
 	method deseosNoSatisfechos() {
 		return casaDeJulianYPepe.deseosNoCumplidos(deseos)
