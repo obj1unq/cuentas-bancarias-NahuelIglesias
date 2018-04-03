@@ -72,10 +72,10 @@ object cuentasCombinadas {
 	}
 }
 
-object casaDeJulian {
+object casaDeJulianYPepe {
 	var gastos = 0
 	var epoca = cuentaDeJulian
-	var compras = #{}
+	var compras = []
 	
 	method comprar(cosa) {
 		compras.add(cosa)
@@ -96,6 +96,73 @@ object casaDeJulian {
 	
 	method esBacan() {
 		return epoca.saldo() > 40000
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	method compraMasCara() {
+		return compras.max({compra => compra.precio() })
+	}
+	method electrodomesticosComprados() {
+		return compras.filter({compra => compra.esElectrodomestico()})
+	}
+	method malaEpoca() {
+		return compras.all({compra => compra.esComida()})
+	}
+	method queFaltaComprar(listaDeseos) {
+		return listaDeseos.asSet().difference(compras.asSet())
+	}
+	method faltaComida() {
+		return ((compras.count({compra => compra.esComida()})) < 2)
+	}
+	
+	method tengoLaCosa(cosa) {
+		return compras.contains(cosa)
+	}
+	method deseosCumplidos(listaDeseos) {
+		return compras.filter({compra => listaDeseos.contains(compra)})
+	}
+	method deseosNoCumplidos(listaDeseos) {
+		return compras.filter({compra => !listaDeseos.contains(compra)})
+	}
+	method podriamosDonar(listaDeseos) {
+		return compras.filter({compra => })
+	}
+}
+
+object romina {
+	var deseos = #{}
+	
+	method desear(cosa) {
+		deseos.add(cosa)
+	}
+	method olvidar(cosa) {
+		deseos.remove(cosa)
+	}
+	method pedirUnaCosa(cosa) {
+		if (!casaDeJulianYPepe.tengoLaCosa(cosa)) {
+			casaDeJulianYPepe.comprar(cosa)
+		}
+	}
+	method deseosNoSatisfechos() {
+		return casaDeJulianYPepe.deseosNoCumplidos(deseos)
+	}
+	method deseosSatisfechos() {
+		return casaDeJulianYPepe.deseosCumplidos(deseos)
+	}
+	method cosasParaDonar() {
+		return casaDeJulianYPepe.podriamosDonar(deseos)
 	}
 }
 
