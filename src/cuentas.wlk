@@ -75,7 +75,12 @@ object cuentasCombinadas {
 object casaDeJulian {
 	var gastos = 0
 	var epoca = cuentaDeJulian
+	var compras = #{}
 	
+	method comprar(cosa) {
+		compras.add(cosa)
+		self.gastar(cosa.valor())
+	}
 	method gastar(monto) {
 		gastos += monto
 		epoca.extraer(monto)
@@ -95,31 +100,31 @@ object casaDeJulian {
 }
 
 object heladera {
-	var valor = 20000 
-	var esComida = false
-	var esElectrodomestico = true
+	method valor() = 20000 
+	method esComida() = false
+	method esElectrodomestico() = true
 }
 
 object cama {
-	var valor = 8000 
-	var esComida = false
-	var esElectrodomestico = false
+	method valor() = 8000 
+	method esComida() = false
+	method esElectrodomestico() = false
 }
 
 object tiraDeAsado {
-	var valor = 350 
-	var esComida = true
-	var esElectrodomestico = false
+	method valor() = 350 
+	method esComida() = true
+	method esElectrodomestico() = false
 }
 
 object paqueteFideos {
-	var valor = 50 
-	var esComida = true
-	var esElectrodomestico = false
+	method valor() = 50 
+	method esComida() = true
+	method esElectrodomestico() = false
 }
 
 object plancha {
-	var valor = 1200 
-	var esComida = false
-	var esElectrodomestico = true
+	method valor() = 1200 
+	method esComida() = false
+	method esElectrodomestico() = true
 }
